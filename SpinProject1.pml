@@ -17,6 +17,8 @@ active [N] proctype P() {
 		:: else -> printf("locked[%d] = %d  locked[%d] = %d", i, locked[i], j, locked[j])
 	od;
 	critical:
+
+	# the issue was here lmao
 	temp = A[i]
 	A[i] = A[j]
 	A[j] = temp
