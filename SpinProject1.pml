@@ -18,7 +18,7 @@ active [N] proctype P() {
 	od;
 	critical:
 
-	# the issue was here lmao
+	// the issue was here lmao
 	temp = A[i]
 	A[i] = A[j]
 	A[j] = temp
