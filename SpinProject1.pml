@@ -1,12 +1,9 @@
 byte N = 5;
 byte A[N] = {1, 2, 3, 4, 5}; 
 bool locked[N] = {false, false, false, false, false};
-
-
-
-
+	
 active [N] proctype P() {
- 	byte temp;
+	byte temp;
 	byte i = _pid;
 	byte j = _pid;
 	do
@@ -16,22 +13,13 @@ active [N] proctype P() {
 	od;
 	trying:
 	do
-		:: atomic {printf("pid = %d j = %d\n", i, j);
-			if
-				:: !locked[i] && !locked[j] ->locked[i] = true;
-					locked[j] = true;
-					break;
-				:: else
-			fi;}
+		:: atomic{ (!locked[i] && !locked[j]) -> locked[i] = true; locked[j] = true; break }
+		:: else -> printf("locked[%d] = %d  locked[%d] = %d", i, locked[i], j, locked[j])
 	od;
 	critical:
 	temp = A[i]
-	A[j] = A[i]
-	A[i] = temp
-	atomic{
-		locked[i] = false
-		locked[j] = false
-	}
-	
-	
+	A[i] = A[j]
+	A[j] = temp
+	locked[i] = false
+	locked[j] = false
 }
