@@ -9,7 +9,7 @@ bool cycleReady;
 active [N] proctype P() {
  	byte temp;
 	byte i = _pid;
-	byte j = _pid + 1;
+	byte j = _pid;
 	byte index = 0;
 	
 	/* if the pid is equal to 0, then initialize all arrays */
