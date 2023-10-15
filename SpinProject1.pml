@@ -78,7 +78,7 @@ active [N] proctype P() {
 
 #define allmutex (mutex1 && mutex2 && mutex3 && mutex4 && mutex5)
 
-ltl liveness {[] !(allmutex)}
+ltl Safety {[] !(allmutex)}
 
 
 #define term1 (P[0]@term)
@@ -88,6 +88,6 @@ ltl liveness {[] !(allmutex)}
 #define term5 (P[4]@term)
 
 #define allTerm (term1 && term2 && term3 && term4 && term5)
-ltl safety {<>term1 && <>term2 && <>term3 && <>term4 && <>term5}
+ltl liveness {<>term1 && <>term2 && <>term3 && <>term4 && <>term5}
 
 
