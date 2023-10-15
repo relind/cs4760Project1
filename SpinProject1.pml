@@ -8,7 +8,7 @@ active [N] proctype P() {
 	byte j = _pid;
 	do
 		:: j < (N-1) -> j = j +1;
-		:: j > 0 -> j = j;
+		:: j > 0 -> j = j-1;
 		:: break;
 	od;
 	trying:
