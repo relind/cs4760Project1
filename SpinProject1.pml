@@ -18,17 +18,23 @@ active [N] proctype P() {
 	od;
 	trying:
 	do
-		:: atomic{ (!locked[i] && !locked[j]) -> locked[i] = true; locked[j] = true; break }
-		// :: else -> printf("locked[%d] = %d  locked[%d] = %d", i, locked[i], j, locked[j])
+		:: atomic{ (!locked[i] && !locked[j]) -> 
+			locked[i] = true; 
+			locked[j] = true; 
+			break }
+		
 	od;
 	critical:
 
-	// the issue was here lmao
+	
 	temp = A[i]
 	A[i] = A[j]
 	A[j] = temp
-	locked[i] = false
-	locked[j] = false
+	atomic
+	{
+		locked[i] = false
+		locked[j] = false
+	}
 
 	term:
 }
